@@ -29,43 +29,23 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun home(modifier: Modifier) {
+    var num_filas_productos = 0
     Column(
         modifier = modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(
-            modifier = Modifier
-                .padding(5.dp)
-                .fillMaxWidth()
-                .height(250.dp)
-                .background(color = Color.LightGray)
-        ) { productosRow() }
-
-        Box(
-            modifier = Modifier
-                .padding(5.dp)
-                .fillMaxWidth()
-                .height(250.dp)
-                .background(color = Color.LightGray)
-        ) { productosRow() }
-
-        Box(
-            modifier = Modifier
-                .padding(5.dp)
-                .fillMaxWidth()
-                .height(250.dp)
-                .background(color = Color.LightGray)
-        ) { productosRow() }
-
-        Box(
-            modifier = Modifier
-                .padding(5.dp)
-                .fillMaxWidth()
-                .height(250.dp)
-                .background(color = Color.LightGray)
-        ) { productosRow() }
+        while (num_filas_productos < 6) {
+            num_filas_productos += 1
+            Box(
+                modifier = Modifier
+                    .padding(2.dp)
+                    .fillMaxWidth()
+                    .height(230.dp)
+                    .background(color = Color.LightGray)
+            ) { productosRow() }
+        }
     }
 }
 
@@ -92,8 +72,8 @@ fun producto() {
     Box(
         modifier = Modifier
             .fillMaxHeight()
-            .width(200.dp)
-            .padding(5.dp)
+            .width(225.dp)
+            .padding(3.dp)
             .background(color = Color.White)
             .aspectRatio(1f),
         contentAlignment = Alignment.TopCenter
@@ -109,16 +89,16 @@ fun producto() {
                     .background(color = Color.White)
                     .weight(4f)
             ) {
-                Image(painter = painterResource(id = R.drawable.helado_inicio),
+                /*Image(painter = painterResource(id = R.drawable.helado_inicio),
                     contentDescription = "Imagen del producto",
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .fillMaxSize()
                         .graphicsLayer {
                             shadowElevation = elevationPx
                             shape = RoundedCornerShape(1)
                             clip = true
                         }
-                )
+                )*/
             }
             Text(text = "Titulo Producto", modifier = Modifier.weight(1f))
             Text(text = "Precio", modifier = Modifier.weight(1f))
