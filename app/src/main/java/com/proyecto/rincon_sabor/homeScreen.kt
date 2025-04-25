@@ -25,10 +25,11 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 
 
 @Composable
-fun home(modifier: Modifier) {
+fun home(modifier: Modifier, navController: NavHostController) {
     var num_filas_productos = 0
     Column(
         modifier = modifier

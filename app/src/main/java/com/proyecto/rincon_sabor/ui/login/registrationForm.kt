@@ -1,24 +1,26 @@
 package com.proyecto.rincon_sabor.ui.login
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.FloatingActionButtonDefaults.elevation
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,10 +30,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.VerticalAlignmentLine
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -40,15 +41,17 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.graphics.rotationMatrix
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.proyecto.rincon_sabor.R
+import com.proyecto.rincon_sabor.createUser
 
 
 @Composable
-fun registrationForm(modifier: Modifier) {
+fun registrationForm(modifier: Modifier, navController: NavHostController) {
     val cardShape = RoundedCornerShape(24.dp)
     val density = LocalDensity.current
     val elevationPx = with(density) { 15.dp.toPx() }
@@ -92,7 +95,7 @@ fun registrationForm(modifier: Modifier) {
             ),
             modifier = Modifier
                 .align(Alignment.TopCenter)
-                .padding(vertical = 70.dp)
+                .padding(vertical = 40.dp)
         )
     }
 
@@ -103,7 +106,7 @@ fun registrationForm(modifier: Modifier) {
     ) {
         Box(
             modifier = Modifier
-                .padding(bottom = 15.dp)
+                .padding(bottom = 30.dp)
                 .shadow(
                     elevation = (12.dp),
                     shape = cardShape,
@@ -112,14 +115,19 @@ fun registrationForm(modifier: Modifier) {
                 .clip(cardShape)
                 .background(color = Color.White)
                 .width(350.dp)
-                .height(550.dp)
-        ) {}
+                .height(450.dp)
+                .verticalScroll(rememberScrollState())
+        ) {form(navController)}
     }
 }
 
 
 @Composable
-fun form() {
+fun form(navController: NavHostController) {
+    val context = LocalContext.current
+    var usuarioCreadoExitosamente by remember { mutableStateOf(false) }
+
+
     var nombre by remember { mutableStateOf("") }
     var apellido by remember { mutableStateOf("") }
     var correo by remember { mutableStateOf("") }
@@ -129,29 +137,76 @@ fun form() {
 
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center
+            .fillMaxWidth()
+            .height(450.dp)
+            .padding(15.dp),
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        val cardShape = RoundedCornerShape(24.dp)
         OutlinedTextField(
             value = nombre,
             onValueChange = { nombre = it },
             label = { Text("Nombre") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .padding(bottom = 3.dp)
+                .shadow(
+                    elevation = (4.dp),
+                    shape = cardShape,
+                    clip = false
+                )
+                .clip(cardShape)
+                .fillMaxWidth()
+                .height(60.dp)
+                .background(color = Color.White),
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedBorderColor = Color.Transparent,
+                focusedBorderColor = Color.Transparent,
+                disabledBorderColor = Color.Transparent
+            )
         )
 
         OutlinedTextField(
             value = apellido,
             onValueChange = { apellido = it },
             label = { Text("Apellido") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .padding(bottom = 3.dp)
+                .shadow(
+                    elevation = (4.dp),
+                    shape = cardShape,
+                    clip = false
+                )
+                .clip(cardShape)
+                .fillMaxWidth()
+                .height(60.dp)
+                .background(color = Color.White),
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedBorderColor = Color.Transparent,
+                focusedBorderColor = Color.Transparent,
+                disabledBorderColor = Color.Transparent
+            )
         )
 
         OutlinedTextField(
             value = correo,
             onValueChange = { correo = it },
             label = { Text("Correo electrónico") },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .padding(bottom = 3.dp)
+                .shadow(
+                    elevation = (4.dp),
+                    shape = cardShape,
+                    clip = false
+                )
+                .clip(cardShape)
+                .fillMaxWidth()
+                .height(60.dp)
+                .background(color = Color.White),
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedBorderColor = Color.Transparent,
+                focusedBorderColor = Color.Transparent,
+                disabledBorderColor = Color.Transparent),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
         )
 
@@ -159,7 +214,21 @@ fun form() {
             value = contrasena,
             onValueChange = { contrasena = it },
             label = { Text("Contraseña") },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .padding(bottom = 3.dp)
+                .shadow(
+                    elevation = (4.dp),
+                    shape = cardShape,
+                    clip = false
+                )
+                .clip(cardShape)
+                .fillMaxWidth()
+                .height(60.dp)
+                .background(color = Color.White),
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedBorderColor = Color.Transparent,
+                focusedBorderColor = Color.Transparent,
+                disabledBorderColor = Color.Transparent),
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
         )
@@ -168,7 +237,21 @@ fun form() {
             value = confirmarContrasena,
             onValueChange = { confirmarContrasena = it },
             label = { Text("Confirmar Contraseña") },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .padding(bottom = 3.dp)
+                .shadow(
+                    elevation = (4.dp),
+                    shape = cardShape,
+                    clip = false
+                )
+                .clip(cardShape)
+                .fillMaxWidth()
+                .height(60.dp)
+                .background(color = Color.White),
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedBorderColor = Color.Transparent,
+                focusedBorderColor = Color.Transparent,
+                disabledBorderColor = Color.Transparent),
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
         )
@@ -190,6 +273,20 @@ fun form() {
                 } else {
                     mensajeError = ""
                     // Aquí podrías manejar el registro (guardar en base de datos, llamar API, etc.)
+                    createUser(
+                        email = correo,
+                        password = contrasena,
+                        nombre = nombre,
+                        apellido = apellido,
+                        navController = navController,
+                        onSuccess = {
+                            usuarioCreadoExitosamente = true
+                            navController.navigate("home")
+                        },
+                        onError = { errorMsg ->
+                            mensajeError = errorMsg
+                        }
+                    )
                 }
             },
             modifier = Modifier
@@ -198,5 +295,16 @@ fun form() {
         ) {
             Text("Registrar")
         }
+        if (usuarioCreadoExitosamente) {
+            LaunchedEffect(usuarioCreadoExitosamente) {
+                Toast.makeText(context, "Usuario creado con éxito", Toast.LENGTH_LONG).show()
+                usuarioCreadoExitosamente = false
+            }
+        }
     }
 }
+
+
+
+
+
