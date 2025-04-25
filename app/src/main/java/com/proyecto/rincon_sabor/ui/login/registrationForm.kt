@@ -95,7 +95,7 @@ fun registrationForm(modifier: Modifier, navController: NavHostController) {
             ),
             modifier = Modifier
                 .align(Alignment.TopCenter)
-                .padding(vertical = 40.dp)
+                .padding(vertical = 20.dp)
         )
     }
 
@@ -106,7 +106,7 @@ fun registrationForm(modifier: Modifier, navController: NavHostController) {
     ) {
         Box(
             modifier = Modifier
-                .padding(bottom = 30.dp)
+                .padding(bottom = 20.dp)
                 .shadow(
                     elevation = (12.dp),
                     shape = cardShape,
@@ -114,8 +114,8 @@ fun registrationForm(modifier: Modifier, navController: NavHostController) {
                 )
                 .clip(cardShape)
                 .background(color = Color.White)
-                .width(350.dp)
-                .height(450.dp)
+                .width(380.dp)
+                .height(500.dp)
                 .verticalScroll(rememberScrollState())
         ) {form(navController)}
     }
@@ -138,7 +138,7 @@ fun form(navController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .height(450.dp)
+            .height(500.dp)
             .padding(15.dp),
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -157,7 +157,7 @@ fun form(navController: NavHostController) {
                 )
                 .clip(cardShape)
                 .fillMaxWidth()
-                .height(60.dp)
+                .height(70.dp)
                 .background(color = Color.White),
             colors = OutlinedTextFieldDefaults.colors(
                 unfocusedBorderColor = Color.Transparent,
@@ -179,7 +179,7 @@ fun form(navController: NavHostController) {
                 )
                 .clip(cardShape)
                 .fillMaxWidth()
-                .height(60.dp)
+                .height(70.dp)
                 .background(color = Color.White),
             colors = OutlinedTextFieldDefaults.colors(
                 unfocusedBorderColor = Color.Transparent,
@@ -201,7 +201,7 @@ fun form(navController: NavHostController) {
                 )
                 .clip(cardShape)
                 .fillMaxWidth()
-                .height(60.dp)
+                .height(70.dp)
                 .background(color = Color.White),
             colors = OutlinedTextFieldDefaults.colors(
                 unfocusedBorderColor = Color.Transparent,
@@ -223,7 +223,7 @@ fun form(navController: NavHostController) {
                 )
                 .clip(cardShape)
                 .fillMaxWidth()
-                .height(60.dp)
+                .height(70.dp)
                 .background(color = Color.White),
             colors = OutlinedTextFieldDefaults.colors(
                 unfocusedBorderColor = Color.Transparent,
@@ -246,7 +246,7 @@ fun form(navController: NavHostController) {
                 )
                 .clip(cardShape)
                 .fillMaxWidth()
-                .height(60.dp)
+                .height(70.dp)
                 .background(color = Color.White),
             colors = OutlinedTextFieldDefaults.colors(
                 unfocusedBorderColor = Color.Transparent,
