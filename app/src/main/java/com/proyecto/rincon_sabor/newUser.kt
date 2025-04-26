@@ -46,12 +46,13 @@ fun createUser(
                                 .addOnSuccessListener {
 
                                     //Navegar a la pantalla de inicio
-                                    navController.navigate("home")
                                     onSuccess()
+                                    navController.navigate("home")
                                 }
                                 .addOnFailureListener { e ->
                                     onError("Error al guardar en Firestore: ${e.localizedMessage}")
                                 }
+
                         } else {
                             onError("Error al actualizar el perfil")
                         }

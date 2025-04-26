@@ -7,15 +7,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.FirebaseApp
-import com.proyecto.rincon_sabor.ui.login.form
+import com.proyecto.rincon_sabor.ui.home
 import com.proyecto.rincon_sabor.ui.login.login
 import com.proyecto.rincon_sabor.ui.login.registrationForm
+import com.proyecto.rincon_sabor.ui.perfilScreen
 import com.proyecto.rincon_sabor.ui.theme.Rincon_saborTheme
 
 class MainActivity : ComponentActivity() {
@@ -42,6 +42,11 @@ class MainActivity : ComponentActivity() {
                     composable("home") {
                         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                             home(Modifier.padding(innerPadding), navController)
+                        }
+                    }
+                    composable("perfil") {
+                        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                            perfilScreen(Modifier.padding(innerPadding), navController)
                         }
                     }
                 }

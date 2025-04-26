@@ -48,6 +48,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.proyecto.rincon_sabor.R
 import com.proyecto.rincon_sabor.createUser
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 @Composable
@@ -117,13 +119,31 @@ fun registrationForm(modifier: Modifier, navController: NavHostController) {
                 .width(380.dp)
                 .height(500.dp)
                 .verticalScroll(rememberScrollState())
-        ) {form(navController)}
+        ) {
+            form(
+                navController,
+                nombre, { nombre = it },
+                apellido, { apellido = it },
+                correo, { correo = it },
+                contrasena, { contrasena = it },
+                confirmarContrasena, { confirmarContrasena = it },
+                mensajeError, { mensajeError = it })
+        }
     }
 }
 
 
 @Composable
-fun form(navController: NavHostController) {
+fun form(
+    navController: NavHostController,
+    nombre: String, onNombreChange: (String) -> Unit,
+    apellido: String, onApellidoChange: (String) -> Unit,
+    correo: String, onCorreoChange: (String) -> Unit,
+    contrasena: String, onContrasenaChange: (String) -> Unit,
+    confirmarContrasena: String, onConfirmarContrasenaChange: (String) -> Unit,
+    mensajeError: String, onMensajeErrorChange: (String) -> Unit
+) {
+
     val context = LocalContext.current
     var usuarioCreadoExitosamente by remember { mutableStateOf(false) }
 
@@ -206,7 +226,8 @@ fun form(navController: NavHostController) {
             colors = OutlinedTextFieldDefaults.colors(
                 unfocusedBorderColor = Color.Transparent,
                 focusedBorderColor = Color.Transparent,
-                disabledBorderColor = Color.Transparent),
+                disabledBorderColor = Color.Transparent
+            ),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
         )
 
@@ -228,7 +249,8 @@ fun form(navController: NavHostController) {
             colors = OutlinedTextFieldDefaults.colors(
                 unfocusedBorderColor = Color.Transparent,
                 focusedBorderColor = Color.Transparent,
-                disabledBorderColor = Color.Transparent),
+                disabledBorderColor = Color.Transparent
+            ),
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
         )
@@ -251,7 +273,8 @@ fun form(navController: NavHostController) {
             colors = OutlinedTextFieldDefaults.colors(
                 unfocusedBorderColor = Color.Transparent,
                 focusedBorderColor = Color.Transparent,
-                disabledBorderColor = Color.Transparent),
+                disabledBorderColor = Color.Transparent
+            ),
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
         )
