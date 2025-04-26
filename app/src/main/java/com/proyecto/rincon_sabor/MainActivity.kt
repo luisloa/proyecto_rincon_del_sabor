@@ -13,8 +13,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.FirebaseApp
 import com.proyecto.rincon_sabor.ui.home
-import com.proyecto.rincon_sabor.ui.login.login
-import com.proyecto.rincon_sabor.ui.login.registrationForm
+import com.proyecto.rincon_sabor.ui.login
+import com.proyecto.rincon_sabor.ui.registrationForm
 import com.proyecto.rincon_sabor.ui.perfilScreen
 import com.proyecto.rincon_sabor.ui.theme.Rincon_saborTheme
 

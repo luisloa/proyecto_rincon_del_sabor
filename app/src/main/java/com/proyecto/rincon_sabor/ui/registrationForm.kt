@@ -1,4 +1,4 @@
-package com.proyecto.rincon_sabor.ui.login
+package com.proyecto.rincon_sabor.ui
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -43,13 +43,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.proyecto.rincon_sabor.R
-import com.proyecto.rincon_sabor.createUser
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.proyecto.rincon_sabor.backend.createUser
 
 
 @Composable

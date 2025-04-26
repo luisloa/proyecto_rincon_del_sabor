@@ -1,4 +1,4 @@
-package com.proyecto.rincon_sabor
+package com.proyecto.rincon_sabor.backend
 
 import androidx.navigation.NavController
 import com.google.firebase.Firebase

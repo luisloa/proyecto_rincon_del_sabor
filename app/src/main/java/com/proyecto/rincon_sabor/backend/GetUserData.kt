@@ -1,4 +1,4 @@
-package com.proyecto.rincon_sabor
+package com.proyecto.rincon_sabor.backend
 
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
